@@ -1,7 +1,23 @@
 ---
+import BlogPost from "../components/BlogPost.astro";
+import { siteConfig } from "../config/site-config";
 import MainLayout from "../layouts/MainLayout.astro";
+
+const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
+console.log(posts);
 ---
 
-<MainLayout title="Epsaind-Blog " >
-  <h1>Home</h1>
+<MainLayout title="Epsaind-Blog ">
+  <!-- component -->
+  <section class="">
+    <div class="container px-6 py-10 mx-auto">
+      <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
+        {siteConfig.title}
+      </h1>
+
+      <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+        {posts.map((post) => <BlogPost {...post} />)}
+      </div>
+    </div>
+  </section>
 </MainLayout>
