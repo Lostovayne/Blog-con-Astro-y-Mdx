@@ -1,8 +1,12 @@
 ---
-import BlogPost from "../components/BlogPost.astro";
-import { siteConfig } from "../config/site-config";
-import MainLayout from "../layouts/MainLayout.astro";
+import { getCollection } from "astro:content";
+import MainLayout from "@/layouts/MainLayout.astro";
+import { siteConfig } from "@/config/site-config";
+import TypedBlogPost from "@/components/TypedBlogPost.astro";
 
+const blogPosts = await getCollection("blog");
+
+console.log(blogPosts);
 ---
 
 <MainLayout title="Epsaind-Blog ">
@@ -12,10 +16,9 @@ import MainLayout from "../layouts/MainLayout.astro";
       <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
         {siteConfig.title}
       </h1>
-
-      <!-- <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
-        {posts.map((post) => <BlogPost {...post} />)}
-      </div> -->
+      <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
+        {blogPosts.map((post) => <TypedBlogPost post={post} />)}
+      </div>
     </div>
   </section>
 </MainLayout>
