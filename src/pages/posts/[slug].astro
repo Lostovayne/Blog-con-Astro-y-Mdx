@@ -29,7 +29,9 @@ const { Content, headings } = await post.render();
     {
       headings.map((heading, index) => (
         <li>
-          <a href={`#${heading.slug}`}>{index +1} - {heading.text}</a>
+          <a href={`#${heading.slug}`}>
+            {index + 1} - {heading.text}
+          </a>
         </li>
       ))
     }
@@ -38,7 +40,7 @@ const { Content, headings } = await post.render();
   <!-- Contenido -->
   <Content />
 
-  <div class="my-20" >
+  <div class="my-20">
     <a href="#btn-back">Ir arriba</a>
   </div>
 </BlogLayout>
