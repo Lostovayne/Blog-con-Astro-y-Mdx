@@ -2,18 +2,19 @@ import { defineCollection, z } from "astro:content";
 
 const blogCollection = defineCollection({
   type: "content",
-  schema: z.object({
-    title: z.string(),
-    date: z.date(),
-    description: z.string(),
-    image: z.string(),
+  schema: ({ image }) =>
+    z.object({
+      title: z.string(),
+      date: z.date(),
+      description: z.string(),
+      image: image().refine((img) => img.width > 800, { message: "La imagen debe ser mayor a 800px" }),
 
-    // Relacion
-    author: z.string(),
+      // Relacion
+      author: z.string(),
 
-    // Relacion
-    tags: z.array(z.string()),
-  }),
+      // Relacion
+      tags: z.array(z.string()),
+    }),
 });
 
 export const collections = {
