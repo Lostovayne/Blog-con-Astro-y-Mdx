@@ -11,16 +11,15 @@ const { post } = Astro.props;
 const frontmatter = post.data;
 ---
 
-<!-- format="webp"
-quality={70}
-loading="lazy" -->
-<div class="lg:flex">
+<div class="lg:flex items-center  ">
   <Image
-    class="object-cover w-full h-56 rounded-lg lg:w-64"
+    class="object-cover  w-[300]  h-56 rounded-lg "
     src={frontmatter.image}
     alt={frontmatter.title}
-    width={320}
-    height={320}
+    width={600}
+    height={300}
+    quality="low"
+    loading="lazy"
     transition:name={`${post.slug}-image`}
   />
 

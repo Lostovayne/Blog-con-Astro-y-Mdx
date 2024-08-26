@@ -2,35 +2,60 @@
 import type { GetStaticPaths } from "astro";
 import { Image } from "astro:assets";
 import BlogLayout from "@/layouts/BlogLayout.astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry, type CollectionEntry } from "astro:content";
+import { Formatter } from "@/utils/formatter";
 
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+// Properties que se mandan de manera statica
 export const getStaticPaths = (async () => {
-  const blogPosts = await getCollection("blog");
-
+  const blogPosts = await getCollection("blog") as CollectionEntry<"blog">[];
   return blogPosts.map((post) => ({
     params: { slug: post.slug },
     props: { post },
   }));
 }) satisfies GetStaticPaths;
 
-const { post } = Astro.props;
-const frontmatter = post.data;
 
+const { post } = Astro.props;
+const frontmatter = post.data; //  Hace referencia a la parte superior del .mdx
+const author = (await getEntry("author", frontmatter.author.id)).data
 const { Content, headings } = await post.render();
 ---
-
 <BlogLayout title={frontmatter.title}>
   <h1 class="text-xs text-gray-500 mb-0">{post.data.title}</h1>
-  <h4 class="text-md text-gray-400 mb-0">{frontmatter.author}</h4>
+  <!-- <h4 class="text-md text-gray-400 mb-0">{author.name}</h4> -->
+
+  <div class="text-md text-gray-300 mb-0 flex flex-row mt-2" >
+    <Image 
+    src={author.avatar}
+    alt={author.name}
+    width={200}
+    height={200}
+    class="object-cover size-14 rounded-full "
+    />
+    
+    <div
+    class="flex flex-col ml-5"
+    >
+    <a href={`/blog/${frontmatter.author.id}`}>{author.name}</a>
+    <span>
+      {Formatter.formatDate(frontmatter.date)}
+    </span>
+    </div>
+
+
+  </div>
 
   <Image
-    class="object-cover h-56 w-full rounded-lg"
     src={frontmatter.image}
     alt={frontmatter.title}
-    width={640}
-    height={640}
-    loading="lazy"
-    quality="low"
+    width={300}
+    height={300}
+    class="object-cover h-96 w-auto my-5 rounded-md"
     transition:name={`${post.slug}-image`}
   />
 

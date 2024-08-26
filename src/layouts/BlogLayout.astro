@@ -2,16 +2,11 @@
 import { ViewTransitions } from "astro:transitions";
 
 import "../styles/blog.css";
-
-// interface Props {
-//   title?: string;
-// }
-
 const { title } = Astro.props;
 
-// const frontmatter = rest.frontmatter;
-// console.log(frontmatter);
 ---
+
+<!-- Layout del Slug blog -->
 
 <html lang="es">
   <head>
@@ -20,6 +15,7 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+
     <ViewTransitions />
   </head>
   <body class="bg-gray-900">

@@ -15,9 +15,18 @@ const blogPosts = await getCollection("blog");
       <h1 class="text-3xl font-semibold capitalize lg:text-4xl text-white">
         {siteConfig.title}
       </h1>
+
+      <a href="/blog/1">Blog paginado</a>
       <div class="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2">
         {blogPosts.map((post) => <TypedBlogPost post={post} />)}
       </div>
     </div>
   </section>
 </MainLayout>
+
+
+<style>
+  a{
+    @apply text-white mt-5 text-2xl  block hover:underline 
+  }
+</style>
