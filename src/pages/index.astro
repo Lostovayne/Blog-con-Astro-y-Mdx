@@ -4,7 +4,8 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import { siteConfig } from "@/config/site-config";
 import TypedBlogPost from "@/components/TypedBlogPost.astro";
 
-const blogPosts = await getCollection("blog");
+// agregar adicional un filtro a la coleccion que se devuelve
+const blogPosts = await getCollection("blog" , (post) => post.data.isDraft === false);
 
 ---
 
