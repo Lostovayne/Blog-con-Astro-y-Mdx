@@ -3,12 +3,7 @@ import AuthorCard from "@/components/AuthorCard.astro";
 import MainLayout from "@/layouts/MainLayout.astro";
 import { getCollection } from "astro:content";
 
-
-
-
 const authors = await getCollection("author");
-
-
 ---
 
 <MainLayout title="Listado de Autores" >

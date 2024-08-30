@@ -9,4 +9,5 @@ export default defineConfig({
   experimental: {
     contentIntellisense: true,
   },
+  site: "https://epsaind.com",
 });

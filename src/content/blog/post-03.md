@@ -30,6 +30,8 @@ function Counter() {
 }
 ```
 
+<!-- <img src={`../../assets/${frontmatter.image}`} alt="useState Hook" /> -->
+
 ## useEffect Hook
 
 El `useEffect` hook te permite realizar efectos secundarios en tus componentes funcionales, como acceder a datos externos o modificar el DOM.
@@ -90,3 +92,4 @@ function Counter() {
 ```
 
 Los Hooks de React son una poderosa característica que te permite escribir componentes más limpios y reutilizables en React. ¡Empieza a usarlos en tus proyectos hoy mismo!
+
