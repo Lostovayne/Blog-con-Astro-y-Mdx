@@ -9,5 +9,5 @@ export default defineConfig({
   experimental: {
     contentIntellisense: true,
   },
-  site: "https://epsaind.com",
+  site: "https://epsaind-blog.netlify.app",
 });
